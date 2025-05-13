@@ -1,45 +1,74 @@
-# 🌞 Solar Flare Regression Project (with Log Transformation)
+# 🌞 Solar Flare Prediction using Machine Learning
 
-This project performs **exploratory data analysis (EDA)** and builds **machine learning regression models** to predict solar flare intensity using the NASA Solar Flare Dataset. We apply a **logarithmic transformation** to handle skewness in the target variable.
+This project focuses on predicting **severe solar flares** based on solar activity data using classification models. The dataset includes solar sunspot features such as Zurich classification, spot size, distribution, and other observed characteristics.
 
-## 📁 Dataset Overview
+---
 
-- **Records**: 1,389 solar observations
-- **Features**: 13 (categorical + numerical)
-- **Final Target**: `log(total_flares)` where `total_flares = moderate + severe flares`
+## 📁 Dataset
 
-## 🔍 Objectives
+- **Source**: `SolarFlareDataset.csv`
+- **Target Variable**: `severe flares` (binary: 0 = no severe flare, 1 = severe flare)
+- **Features**:
+  - `modified Zurich class` *(ordinal)*
+  - `largest spot size` *(ordinal)*
+  - `spot distribution` *(nominal)*
+  - `activity`, `evolution`, `area`, etc. *(numerical)*
 
-1. Understand solar flare data distributions
-2. Clean and encode categorical features
-3. Build baseline and advanced ML models
-4. Apply log transformation to improve prediction accuracy
-5. Interpret feature importance
+---
 
-## 🛠️ Feature Engineering
+## 🧠 Models Used
 
-- **Label Encoding** for:
-  - `modified Zurich class`
-  - `largest spot size`
-  - `spot distribution`
-- **New Target**: 
-  - `total_flares = moderate flares + severe flares`
-  - Transformed to: `log_total_flares = log1p(total_flares)`
+- **Ridge Classifier**
+- **K-Nearest Neighbors (KNN)**
 
-## ⚙️ Modeling
+---
 
-| Model                     | MAE   | RMSE  | MSE   |
-|---------------------------|-------|-------|-------|
-| Random Forest (original) | 0.145 | 0.374 | 0.140 |
-| ✅ Random Forest (log)   | 0.113 | 0.316 | 0.100 |
+## ✅ Tasks Completed
 
-> Log transformation improved prediction accuracy and reduced error on original scale.
+| Task                                                                 | Status  |
+|----------------------------------------------------------------------|---------|
+| Proper encoding of categorical features (ordinal vs. nominal)        | ✅ Done |
+| Train/test split of the dataset                                      | ✅ Done |
+| Hyperparameter tuning via `GridSearchCV`                             | ✅ Done |
+| Classification performance evaluation (precision, recall, F1-score) | ✅ Done |
+| Visualization of key feature relationships                          | ✅ Done |
 
-## 🔥 Feature Importance
+---
 
-Most influential features:
-- `evolution`
-- `previous 24 hour flare activity`
-- `historically-complex`
-- `area`
-- `activity`
+## 📊 Visualizations
+
+- **Correlation Heatmap** of numerical features vs `severe flares`
+- **Bar Chart** showing average severe flare rate by `modified Zurich class`
+
+---
+
+## 🔍 Key Insights
+
+- Ridge and KNN models both achieved strong weighted F1-scores.
+- Severe flares are rare, making this an imbalanced classification problem.
+- Zurich classes like `F` and `H` show higher association with severe flares.
+
+---
+
+## 🚀 Future Work
+
+- Introduce **more models** (e.g., XGBoost, GradientBoosting)
+- Use **SMOTE** or class weighting for class imbalance
+- Engineer **temporal features** (if time data is available)
+- Perform **feature selection** or dimensionality reduction
+
+---
+
+## 🛠 How to Run
+
+1. Upload `SolarFlareDataset.csv`
+2. Run `solar_flare_model_revised.ipynb` in Google Colab or Jupyter
+3. Review model results and visualizations
+
+---
+
+## 📧 Author
+
+Wennie Lin  
+Capstone Project – Solar Flare Prediction  
+May 2025  
