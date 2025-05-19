@@ -1,42 +1,76 @@
-# Solar Flare Prediction Using Machine Learning
+🛰️ Solar Flare Prediction Using Machine Learning
+This project uses machine learning to predict severe solar flares based on space weather data, helping anticipate risks to satellites, power grids, and communication networks.
 
-This project uses machine learning to predict **severe solar flares** based on space weather data.
+🧠 What This Project Does
+It analyzes past solar activity—such as sunspot classification, size, and distribution—to train models that predict:
 
-## 🧠 What This Project Does
+Whether a solar flare will occur
 
-It looks at past solar activity (like sunspots and magnetic activity) and trains models to guess:
-- Will there be a flare?
-- If yes, will it be a strong one?
+If so, whether it will be severe
 
-## 📁 Files in This Project
+📁 Files in This Project
+SolarFlareDataset.csv: Source dataset (NASA/NOAA format)
 
-- `SolarFlareDataset.csv`: The data we used
-- `solar_flare_model.ipynb`: The main notebook that runs everything
-- `README.md`: This file
-- `report.txt`: Summary of results
+solar_flare_model.ipynb: Main notebook that trains and evaluates models
 
-## 🧪 Models Used
+report.txt: Summary of findings
 
-We tried 3 machine learning models:
-- Ridge Classifier
-- K-Nearest Neighbors (KNN)
-- Random Forest
+README.md: This file
 
-We used a tool called **GridSearchCV** to help find the best settings for each model.
+⚙️ Preprocessing Highlights
+Removed the rare class 2 (only 1 instance) to ensure balanced stratified sampling.
 
-## 📊 Results
+Used train_test_split(..., stratify=y, random_state=42) to maintain class distribution and ensure reproducibility.
 
-All three models were trained and tested. The best one is shown in the report with its accuracy.
+Applied one-hot and ordinal encoding, along with standardization, in a ColumnTransformer pipeline.
 
-## 🚀 How to Use
+🧪 Models & Evaluation
+We tested three models using SMOTE to balance class labels and GridSearchCV for hyperparameter tuning:
 
-1. Open the notebook
-2. Run each cell
-3. Try entering your own solar data to get a prediction!
+Ridge Classifier
 
-## 📌 Requirements
+K-Nearest Neighbors (KNN)
 
-- Python
-- scikit-learn
-- pandas
-- matplotlib
+Random Forest 🌟 (Best Performing)
+
+We evaluated models using Precision, Recall, and F1-score (weighted average) to reflect balanced performance on an imbalanced dataset.
+
+📊 Results (Weighted Avg)
+Model	Precision	Recall	F1-score
+Ridge	~0.96	~0.96	~0.96
+KNN	~0.97	~0.97	~0.97
+RandomForest	~0.98	~0.98	~0.98
+
+🔧 Best parameters for each model are included in the output logs.
+
+🌞 Why This Matters
+Accurate prediction of severe solar flares is critical because:
+
+NASA & Aerospace Missions: Can take precautions for crewed missions and sensitive instruments.
+
+Utility Companies: Can protect power infrastructure from geomagnetic storms.
+
+Telecoms & GPS Providers: Can anticipate and reduce signal disruption.
+
+This model lays the foundation for real-time solar flare risk forecasting using Earth-based observations.
+
+🚀 How to Use
+Open solar_flare_model.ipynb
+
+Run the cells in order
+
+Input your own solar activity data to generate predictions
+
+📌 Requirements
+Python 3.8+
+
+scikit-learn
+
+pandas
+
+matplotlib
+
+seaborn
+
+imbalanced-learn
+
